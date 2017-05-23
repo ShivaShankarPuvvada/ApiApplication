@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "This is the sample app for uploading csv file and save it in mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shankar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "fast-csv": "^2.4.0",
+    "mongoose": "^4.10.2"
+  }
+}
