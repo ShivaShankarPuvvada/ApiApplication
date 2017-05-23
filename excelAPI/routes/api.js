@@ -91,55 +91,7 @@
 		console.log(doc);
 		});
 
-		//setting up the path of the required files; where req.params.file takes filename entered in url.
-		var path = './upload/' + req.params.file + '.csv';
-
-		//checking if the file exists
-		fs.exists(path, function(exists) {
-	    
-	    if (exists) {
-        
-        var stream = fs.createReadStream(path);
-
-        //declaring the headers/column names and mapping it for schema.
-        csv.fromStream(stream, {headers : [
-    								    	'Question',
-    								    	'Option_A',
-        									'Option_B',
-        									'Option_C',
-        									'Option_D',
-        									'Correct_Option'
-        ]}).on("data", function(data){
-            
-            //creating an instance to read each row.
-            var newMcq = new Mcq();
-            
-            newMcq.Question = data['Question'];
-            newMcq.Option_A = data['Option_A'];
-            newMcq.Option_B = data['Option_B'];
-            newMcq.Option_C = data['Option_C'];
-            newMcq.Option_D = data['Option_D'];
-            newMcq.Correct_Option = data['Correct_Option'];
-
-        });
-
-		//saving new row in mongodb
-    	newMcq.save(function (err, data) {
-      
-      	if(err) {
-      		console.log(err);
-    	}
-      
-      	else {
-      	console.log( req.parms.file + '.csv sucessfully saved in mongodb');
-  		}
-       
-       });
-
-	}
-	});
-	});
-
+		
 
 //setting up the delete request.
 	router.delete('/delete/:file', function(req, res, next){
